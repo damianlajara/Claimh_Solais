@@ -124,15 +124,15 @@ void Inventory::DisplayInventory(Hero& hero)
 void Inventory::DisplayStats(Hero& hero)
 {
 	cout << "***STATUS***\n";
-	cout << "Hp: " << hero.getHp() << "\n";
-	cout << "Attack: " << hero.getAttack() << "\n";
-	cout << "Defense: "<<hero.getDefense() <<"\n";
-	cout << "Level: " << hero.getlevel() << "\n";
-	cout << "Gold: " << hero.getMoney() << "\n";
+	cout << "Lvl: " << hero.getlevel() << "\n";
+	cout << "Hp : " << hero.getHp() << "\n";
+	cout << "Att: " << hero.getAttack() << "\n";
+	cout << "Def: "<<hero.getDefense() <<"\n";
+	cout << "Gld: " << hero.getMoney() << "\n";
 	cout << "Exp: " << hero.getExp() << "\n";
     //cout << "Exp left for next level..." << endl;
     cout << "************\n";
-    cout << "Enter 1 for more options or any other number to quit\n";
+    cout << "Enter 1 for equipment status or any other number to quit\n";
     cin>>more_options;
     if(more_options == 1)
     {
@@ -148,13 +148,27 @@ void Inventory::DisplayStats(Hero& hero)
 			display_weapons();
 		}
         else cout << "You currently do not own any weapons\n";
-        if(!armor_inventory.empty()) {cout << "\nCurrent Armor in possession:\n"; display_armor();}
-        else cout << "You currently do not own any armor\n";
-        if(!potion_inventory.empty()) {cout << "\nCurrent Potions in possession:\n"; display_potions();}
+		
+        if(!armor_inventory.empty()) {
+			cout << "\nCurrent Armor in possession:\n";
+			sort(armor_inventory.begin(), armor_inventory.end(),Armor::compareByValue);
+			display_armor();
+		}
+        else cout << "You currently do not own any armor";
+		
+        if(!potion_inventory.empty()) {
+			cout << "\nCurrent Potions in possession:\n";
+			sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);
+			display_potions();
+		}
         else cout << "\nYou currently do not own any potions\n";
+		
         cout << "***********************\n";
     }
-    else {cout << "Exiting Status Menu . . .\n"; return;}
+    else {
+		cout << "Exiting Status Menu . . .\n";
+		return;
+	}
     //Learn how to throw exceptions so in case someone types a non-integer value, it wont go in an endless loop
 	
     //exp till next level:...
