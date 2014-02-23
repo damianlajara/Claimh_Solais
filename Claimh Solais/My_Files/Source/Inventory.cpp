@@ -142,7 +142,11 @@ void Inventory::DisplayStats(Hero& hero)
         if(armor_flag) cout << "Equipped Armor: " << Equipped_armor()._name << endl;
         else cout << "You currently do not have any armor equipped!\n";
         
-        if(!weapon_inventory.empty()) {cout << "Current weapons in possession:\n"; display_weapons();}
+        if(!weapon_inventory.empty()) {
+			cout << "Current weapons in possession:\n";
+			sort(weapon_inventory.begin(), weapon_inventory.end(),Weapon::compareByValue);
+			display_weapons();
+		}
         else cout << "You currently do not own any weapons\n";
         if(!armor_inventory.empty()) {cout << "\nCurrent Armor in possession:\n"; display_armor();}
         else cout << "You currently do not own any armor\n";
