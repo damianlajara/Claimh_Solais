@@ -4,7 +4,7 @@
 //
 //  Created by Damian Lajara on 12/28/13.
 //  Copyright (c) 2013 Damian Lajara. All rights reserved.
-//
+//What's happening?
 
 /*
  ERROR CASE!!!!!!!! Fix this! in case 4!
@@ -229,6 +229,7 @@ void Inventory::DisplayStats(Hero& hero)
 		cout << "Exiting Status Menu . . .\n";
 		return;
 	}
+	cout << "hey!!!!!\n";
     //Learn how to throw exceptions so in case someone types a non-integer value, it wont go in an endless loop
     //exp till next level:...
 }
