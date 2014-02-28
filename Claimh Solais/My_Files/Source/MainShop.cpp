@@ -67,10 +67,8 @@ void MainShop::mainShop(Hero& hero)
 	{
         
 		cout << "Welcome to the Claimh Solais Shop!\nThis is where your hard work and dedication pay off!\n";
-        
-		//MyMap[maps.dungeon_lvl] = Monster_Dungeon1;
-		//cout << Maps.begin()->first<<endl;
-		//cout << Maps.begin()->second<<endl;
+		
+        cout << "Are you here today to buy, or sell?\n";
         
 		if (hero.getMoney() > 0)//Check to see if broke
 		{
