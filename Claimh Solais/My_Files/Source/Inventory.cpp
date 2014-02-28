@@ -104,25 +104,40 @@ void Inventory::DisplayInventory(Hero& hero)
             if (!potion_inventory.empty())//Make sure inventory is not empty
             {
                 cout << "Your current Potions are: \n";
-                /*for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++) {
-                    cout << i << ") " << iter->_name << endl;
-                    ++i;
-                }*/
                 sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);//Sorts vector depending on the _value
                 display_potions();
                  
                 cout << "Which potion would you like to use?";
-                //cin >> equipChoice;
+                cin >> equipChoiceP;
+				
+				for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++)
+				{ //loop through vector
+					if(equipChoiceP == iter->_value)//if user choice matches the weapon in vector
+					{
+							cout << "\nYou have Successfully used " << iter->_name;//use potions
+							hero.setHp(hero.getHp() + iter->_health);
+							//after i equip, dont let me requip the same potion
+							//potion_inventory.erase(potion_inventory.begin()+iter->_value);
+							break;//break for loop
+						
+					}
+					else if ((equipChoiceP != iter->_value) && (iter == potion_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
+					{
+						cout << "\nYou have entered an invalid answer!\n";
+						break;
+					}
+				}
                 
             }
             else cout << "Error! You currently do not own any items\n";
             break;
         default: cout << "Error on switch!";
+			break;
 	}
 }
 
 void Inventory::DisplayStats(Hero& hero)
-{
+{//hp = hp_max; //fully heals the player upon level up
 	cout << "***STATUS***\n";
 	cout << "Lvl: " << hero.getlevel() << "\n";
 	cout << "Hp : " << hero.getHp() << "\n";
@@ -159,7 +174,7 @@ void Inventory::DisplayStats(Hero& hero)
         if(!potion_inventory.empty()) {
 			cout << "\nCurrent Potions in possession:\n";
 			sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);
-			display_potions();
+			display_potions();//error! ex: if i buy a potion with value 2, it will display 2,3,4,5,6 instead of 1,2,3..etc
 		}
         else cout << "\nYou currently do not own any potions\n";
 		
@@ -170,6 +185,5 @@ void Inventory::DisplayStats(Hero& hero)
 		return;
 	}
     //Learn how to throw exceptions so in case someone types a non-integer value, it wont go in an endless loop
-	
     //exp till next level:...
 }

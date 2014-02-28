@@ -27,6 +27,7 @@
 Weapon equipped_weapon;
 Armor equipped_armor;
 
+
 //Implement static variables
 vector <Armor> MainShop::armor_inventory;
 vector <Potion> MainShop::potion_inventory;
@@ -164,19 +165,25 @@ void MainShop::mainShop(Hero& hero)
 
 void MainShop::display_weapons()
 {
-    for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++){cout << iter->_value << ") " << iter->_name << endl;}
+    for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++){
+		cout << iter->_value << ") " << iter->_name << endl;
+	}
 
 }
 
 void MainShop::display_armor()
 {
-    for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++){cout << iter->_value << ") " << iter->_name << endl;}
+    for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++){
+		cout << iter->_value << ") " << iter->_name << endl;
+	}
     
 }
 
 void MainShop::display_potions()
 {
-    for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++){cout << iter->_value << ") " << iter->_name << endl;}
+    for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++){
+		cout << iter->_value << ") " << iter->_name << endl;
+	}
     
 }
 

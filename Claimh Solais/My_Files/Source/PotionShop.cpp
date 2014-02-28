@@ -10,7 +10,7 @@
 
 void PotionShop::potionShop(Hero& hero)
 {
-    this->potion_items = {//name, damage, price
+    this->potion_items = {//name, health, price, value
         {1, Potion("Mommy's Tea", 4, 150, 1)},
         {2, Potion("Antidote of Life", 10, 230, 2)},
         {3, Potion("Red Potion'", 16, 300, 3)},
