@@ -31,8 +31,6 @@
 
 
 #include "Inventory.h"
-//#include "SoldierWeapons.h"
-//#include "SoldierArmor.h"
 
 void Inventory::DisplayInventory(Hero& hero)
 {
@@ -138,9 +136,28 @@ void Inventory::DisplayInventory(Hero& hero)
 				{ //loop through vector
 					if(equipChoiceP == iter->_value)//if user choice matches the potion in vector
 					{
-						cout << "\nYou have Successfully used " << iter->_name << " +"<<iter->_health<< "\n";//use potions
-						hero.setHp(hero.getHp() + iter->_health);
-/*add a way to check if hp is full already. if hp is full, dont add potion. if its not full and the potion will pass the max value, then just reheal until the max value. do not pass it*/
+						if (hero.getHp() < hero.get_maxHp())//if hp hasnt reached max_hp yet
+						{
+							hero.setHp(hero.getHp() + iter->_health);//use potion
+							cout << "\nYou have Successfully used " << iter->_name << " +"<<iter->_health<< "\n";
+
+							if(hero.getHp() > hero.get_maxHp())//check if hp went over max value, so you can reset it
+							{
+								hero.setHp(hero.reset_max_hp());
+								cout << "Hp has gone over max value! Resetting back to max\n";
+							}
+						}
+						else if(hero.getHp() == hero.get_maxHp())//if hp is already at max
+						{
+							cout << "You cannot use " << iter->_name << ", since your hp is full\n";
+						}
+						else//if hp is over max or any other kind of irregular error
+						{
+							cout << "Error in checking max_hp!\n";
+				            //return;
+						}
+						
+						//Delete potion from inventory after potion has been used!
 						if (potion_inventory.size() == 1) potion_inventory.clear();//if theres only one potion, then clear the whole vector
 						else if (potion_inventory.size() > 1) potion_inventory.erase(potion_inventory.begin() + (iter->_value-1));
 						//ex: vector.erase(vector.begin() + 4)if value is 4, deletes the fifth element

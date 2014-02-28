@@ -55,6 +55,7 @@ public:
     int getRandMonsters(){return RandMonsters;}
     void setRandMonsters(int r);
     
+	int reset_max_hp();
     void AdvanceNextDungeonLevel();//Advance to next floor
     void SetDungeonLevel();//set monsters for every level
     void Customize();

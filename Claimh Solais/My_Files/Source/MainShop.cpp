@@ -32,6 +32,7 @@ Armor equipped_armor;
 vector <Armor> MainShop::armor_inventory;
 vector <Potion> MainShop::potion_inventory;
 vector <Weapon> MainShop::weapon_inventory;
+
 void MainShop::mainShop(Hero& hero)
 {
     //Polymorphism

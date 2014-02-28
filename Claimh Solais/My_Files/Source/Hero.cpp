@@ -38,6 +38,13 @@ Hero::~Hero()
 	//cout << "Hero destroyed!\n";
 }
 
+int Hero::reset_max_hp()
+{
+	int temp = 0;
+	temp = (this->getHp()-this->get_maxHp());
+	this->setHp(this->getHp() - temp);
+	return this->getHp();
+}
 void Hero::Customize()
 {
 	cout << "\nWhat would you like your character to be called?\n";
@@ -423,8 +430,7 @@ void Hero::Checklevel()
 {
 	if (this->getlevel() == 2)
 	{
-		this->set_maxHp(this->get_maxHp() + stat_increase[0]);
-		
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //20/2 = 10, so 100+10 = 110
 		this->setAttack(this->getAttack() + stat_increase[0]);
 		this->setDefense(this->getDefense() + stat_increase[0]);
 		this->setHp(this->getHp() + stat_increase[0]);
@@ -437,6 +443,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 3)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //40/2 = 20, so 110+20 = 130
 		this->setAttack(this->getAttack() + stat_increase[1]);
 		this->setDefense(this->getDefense() + stat_increase[1]);
 		this->setHp(this->getHp() + stat_increase[1]);
@@ -448,6 +455,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 4)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //60/2 = 30, so 130+20 = 150
 		this->setAttack(this->getAttack() + stat_increase[2]);
 		this->setDefense(this->getDefense() + stat_increase[2]);
 		this->setHp(this->getHp() + stat_increase[2]);
@@ -459,6 +467,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 5)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //80/2 = 40, so 150+20 = 170
 		this->setAttack(this->getAttack() + stat_increase[3]);
 		this->setDefense(this->getDefense() + stat_increase[3]);
 		this->setHp(this->getHp() + stat_increase[3]);
@@ -470,6 +479,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 6)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //100/2 = 50, so 170+20 = 190
 		this->setAttack(this->getAttack() + stat_increase[4]);
 		this->setDefense(this->getDefense() + stat_increase[4]);
 		this->setHp(this->getHp() + stat_increase[4]);
@@ -481,6 +491,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 7)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //120/2 = 60, so 190+20 = 210
 		this->setAttack(this->getAttack() + stat_increase[5]);
 		this->setDefense(this->getDefense() + stat_increase[5]);
 		this->setHp(this->getHp() + stat_increase[5]);
@@ -492,6 +503,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 8)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //140/2 = 70, so 210+20 = 230
 		this->setAttack(this->getAttack() + stat_increase[6]);
 		this->setDefense(this->getDefense() + stat_increase[6]);
 		this->setHp(this->getHp() + stat_increase[6]);
@@ -503,6 +515,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 9)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //160/2 = 80, so 230+20 = 250
 		this->setAttack(this->getAttack() + stat_increase[7]);
 		this->setDefense(this->getDefense() + stat_increase[7]);
 		this->setHp(this->getHp() + stat_increase[7]);
@@ -514,6 +527,7 @@ void Hero::Checklevel()
     
 	else if (this->getlevel() == 10)
 	{
+		this->set_maxHp(this->get_maxHp() + (stat_increase[0]/2)); //180/2 = 90, so 250+20 = 270
 		this->setAttack(this->getAttack() + stat_increase[8]);
 		this->setDefense(this->getDefense() + stat_increase[8]);
 		this->setHp(this->getHp() + stat_increase[8]);
