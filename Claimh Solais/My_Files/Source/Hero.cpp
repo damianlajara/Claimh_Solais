@@ -423,6 +423,8 @@ void Hero::Checklevel()
 {
 	if (this->getlevel() == 2)
 	{
+		this->set_maxHp(this->get_maxHp() + stat_increase[0]);
+		
 		this->setAttack(this->getAttack() + stat_increase[0]);
 		this->setDefense(this->getDefense() + stat_increase[0]);
 		this->setHp(this->getHp() + stat_increase[0]);
@@ -627,6 +629,7 @@ void Hero::initialize_hero()
         //cout << "Stats: " << stat_increase[i] << endl;//debug code
     }
     
+	this->set_maxHp(100);//Since this variable is not in the character constructor since i didnt want monsters to have a max_hp, i just put it in protected so hero can access it, and initialize it here!
 }
 void Hero::GamePlay(Hero& hero, Monster& m, Monster& m1,Monster& m2,Monster& m3,Monster& m4,Monster& m5,Monster& m6,Monster& m7,Monster& m8,Monster& m9)
 {
@@ -655,6 +658,7 @@ void Hero::GamePlay(Hero& hero, Monster& m, Monster& m1,Monster& m2,Monster& m3,
 	//random: Value 10-4 is-Max:10,Min:4 so ((rand()% difference+1)+minValue
     
     initialize_hero();
+	
     this->setDungeonFloor(1);
     this->SetDungeonLevel();//Sets dungeon Monsters to 4 for floor1
 	cout << "Roll a dice. For every even number your roll you will face a monster!\nYou have a 50/50 chance of encountering an enemy\n";

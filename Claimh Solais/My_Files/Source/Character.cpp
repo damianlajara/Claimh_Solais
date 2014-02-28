@@ -10,11 +10,6 @@
 
 Character::Character() : level(0), hp(0), attack(0), defense(0), money(0), exp(0) {}//Initialize all variables
 
-//Character::Character(int seed)
-//{
-//
-//}
-
 Character::Character(int health, int lvl, int att, int def, int mon, int experience)
 : level(lvl), hp(health), attack(att), defense(def), money(mon), exp(experience) {}//Initalizer list - set variable equal to parameters
 
@@ -38,6 +33,11 @@ void Character::setDefense(int def)
 void Character::setHp(int health)
 {
     hp = health;
+}
+
+void Character::set_maxHp(int max_health)
+{
+	max_hp = max_health;
 }
 
 void Character::setExp(int experience)

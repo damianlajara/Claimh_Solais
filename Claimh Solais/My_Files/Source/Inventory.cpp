@@ -6,6 +6,30 @@
 //  Copyright (c) 2013 Damian Lajara. All rights reserved.
 //
 
+/*
+ ERROR CASE!!!!!!!! Fix this! in case 4!
+ Your current Potions are:
+ 1) Mommy's Tea //fix the numbers!
+ 1) Mommy's Tea
+ 2) Antidote of Life
+ Which potion would you like to use?2
+ 
+ You have Successfully used Antidote of Life
+ Enter 'r' for roll, 's' for shop, 'i' for inventory, 'o' for options menu, or 'q' to quit i
+ 
+ What do you want to do?
+ 1) Check Status
+ 2) Equip Weapons
+ 3) Equip Armor
+ 4) Use Potions
+ 4
+ Your current Potions are:
+ 1) Mommy's Tea
+ 2) Antidote of Life
+ Which potion would you like to use?2
+ */
+
+
 #include "Inventory.h"
 //#include "SoldierWeapons.h"
 //#include "SoldierArmor.h"
@@ -114,7 +138,7 @@ void Inventory::DisplayInventory(Hero& hero)
 				{ //loop through vector
 					if(equipChoiceP == iter->_value)//if user choice matches the potion in vector
 					{
-						cout << "\nYou have Successfully used " << iter->_name;//use potions
+						cout << "\nYou have Successfully used " << iter->_name << " +"<<iter->_health<< "\n";//use potions
 						hero.setHp(hero.getHp() + iter->_health);
 /*add a way to check if hp is full already. if hp is full, dont add potion. if its not full and the potion will pass the max value, then just reheal until the max value. do not pass it*/
 						if (potion_inventory.size() == 1) potion_inventory.clear();//if theres only one potion, then clear the whole vector
@@ -141,15 +165,16 @@ void Inventory::DisplayInventory(Hero& hero)
 
 void Inventory::DisplayStats(Hero& hero)
 {//hp = hp_max; //fully heals the player upon level up
-	cout << "***STATUS***\n";
-	cout << "Lvl: " << hero.getlevel() << "\n";
-	cout << "Hp : " << hero.getHp() << "\n";
-	cout << "Att: " << hero.getAttack() << "\n";
-	cout << "Def: "<<hero.getDefense() <<"\n";
-	cout << "Gld: " << hero.getMoney() << "\n";
-	cout << "Exp: " << hero.getExp() << "\n";
+	cout << "****STATUS****\n";
+	cout << "level:   " << hero.getlevel()   << "\n";
+	cout << "MaxHp:   " << hero.get_maxHp()  << "\n";
+	cout << "Health:  " << hero.getHp()      << "\n";
+	cout << "Attack:  " << hero.getAttack()  << "\n";
+	cout << "Defense: " << hero.getDefense() << "\n";
+	cout << "Gold:    " << hero.getMoney()   << "\n";
+	cout << "Exp:     " << hero.getExp()     << "\n";
     //cout << "Exp left for next level..." << endl;
-    cout << "************\n";
+    cout << "**************\n";
     cout << "Enter 1 for equipment status or any other number to quit\n";
     cin>>more_options;
     if(more_options == 1)
@@ -181,7 +206,7 @@ void Inventory::DisplayStats(Hero& hero)
 		}
         else cout << "\nYou currently do not own any potions\n";
 		
-        cout << "***********************\n";
+        cout << "**********************\n";
     }
     else {
 		cout << "Exiting Status Menu . . .\n";

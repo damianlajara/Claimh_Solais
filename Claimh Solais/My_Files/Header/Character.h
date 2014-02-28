@@ -22,6 +22,8 @@ protected://not private, so derived class can use it
 	int defense;
 	int money;
 	int exp;
+	int max_hp;//since i dont want monsters having max_hp, i didnt add it to the constructor!
+	
 	Character(); // zero everything by default
 	//Character(int); // randomly generate everything
 	Character(int, int, int, int, int, int); // populate explicitly
@@ -32,6 +34,7 @@ public:
 	int getAttack() const { return attack; }
 	int getDefense() const { return defense; }
 	int getHp() const { return hp; }
+	int get_maxHp() const { return max_hp;}
 	int getlevel() const { return level; }
 	int getMoney() const { return money; }
 	int getExp() const { return exp; }
@@ -40,6 +43,7 @@ public:
 	void setDefense(int);
 	//void setStrength(int);
 	void setHp(int);
+	void set_maxHp(int);
 	void setlevel(int);
 	void setMoney(int);
 	void setExp(int);
