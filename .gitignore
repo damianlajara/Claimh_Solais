@@ -1,6 +1,4 @@
-<<<<<<< HEAD
- Compiled source #
-=======
+
 # Compiled Object files
 *.slo
 *.lo
@@ -16,7 +14,6 @@
 *.a
 
 Compiled source #
->>>>>>> e84eeaebac2a8f385cb005b991737d89e674caa5
 ###################
 *.com
 *.class
@@ -55,8 +52,5 @@ ehthumbs.db
 Thumbs.db
 
 *.xcodeproj
-<<<<<<< HEAD
-=======
 *.xcode
 .xcode
->>>>>>> e84eeaebac2a8f385cb005b991737d89e674caa5
