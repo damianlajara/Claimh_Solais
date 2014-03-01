@@ -5,7 +5,6 @@
 //  Created by Damian Lajara on 12/20/13.
 //  Copyright (c) 2013 Damian Lajara. All rights reserved.
 //
-
 #include <iostream>
 #include "Hero.h"
 #include "MainShop.h"
@@ -32,7 +31,5 @@ int main()
     hero.Customize();
     hero.GamePlay(hero, m, m1, m2, m3, m4, m5, m6, m7, m8, m9);
     
-    
-    return 0;
+	return 0;
 }
-
