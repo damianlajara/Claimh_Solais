@@ -229,7 +229,6 @@ void Inventory::DisplayStats(Hero& hero)
 		cout << "Exiting Status Menu . . .\n";
 		return;
 	}
-	cout << "hey!!!!!\n";
     //Learn how to throw exceptions so in case someone types a non-integer value, it wont go in an endless loop
     //exp till next level:...
 }
