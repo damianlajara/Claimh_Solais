@@ -6,12 +6,16 @@
 //  Copyright (c) 2013 Damian Lajara. All rights reserved.
 //
 
-/***EVERY COMMENT WITH TEST IS FOR EQUIPPING A WEAPON (HASHMAP)***/
-//9 IN TOTAL!
-
-//Make sure every name in every map is accurate
-//ie: Claimh Solais should be like the last ultimate weapon
+//TODO:
 //Fix all the numbers-the gold, attack and everything. Make the ratios good
+//Create weapon level. If you use a weapon alot, allow it to upgrade.
+//Buy items, and once u collect all those items you can upgrade it yourself
+//make quests
+//create story line
+//add a sell function
+//create weapons thats have single hande use and double handed use
+//if single-handed, you can equip two of them
+//create skills like agility, and dexterity
 
 
 #include "MainShop.h"
@@ -67,8 +71,6 @@ void MainShop::mainShop(Hero& hero)
 	{
         
 		cout << "Welcome to the Claimh Solais Shop!\nThis is where your hard work and dedication pay off!\n";
-		
-        cout << "Are you here today to buy, or sell?\n";
         
 		if (hero.getMoney() > 0)//Check to see if broke
 		{
