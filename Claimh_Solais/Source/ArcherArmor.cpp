@@ -9,7 +9,7 @@
 #include "ArcherArmor.h"
 void ArcherArmor::ArcherArmor_Shop(Hero& hero)
 {
-    this->archer_armor = {//name, damage, price
+    /*this->archer_armor = {//name, damage, price
         {1, Armor("Nightmare", 4, 150, 1)},
         {2, Armor("Ashura", 10, 230, 2)},
         {3, Armor("Ichimonji", 16, 300, 3)},
@@ -18,8 +18,21 @@ void ArcherArmor::ArcherArmor_Shop(Hero& hero)
         {6, Armor("Nirvana", 40, 690, 6)},
         {7, Armor("Chaotic Axis", 52, 750, 7)},
         {8, Armor("Ominous Judgement", 60, 900, 8)}
+    };*/
+	
+    this->init_map_values();//Inherits init_map_values from mainshop
+	
+	this->archer_armor = {//name, damage, price
+        {1, Armor("Nightmare", map_effect_array[0], map_price_array[0],map_sellValue_array[0], 1)},
+        {2, Armor("Ashura",    map_effect_array[1], map_price_array[1],map_sellValue_array[1], 2)},
+        {3, Armor("Ichimonji", map_effect_array[2], map_price_array[2],map_sellValue_array[2], 3)},
+        {4, Armor("Lionheart", map_effect_array[3], map_price_array[3],map_sellValue_array[3], 4)},
+        {5, Armor("Ascalon",   map_effect_array[4], map_price_array[4],map_sellValue_array[4], 5)},
+        {6, Armor("Nirvana",   map_effect_array[5], map_price_array[5],map_sellValue_array[5], 6)},
+        {7, Armor("Chaotic Axis", map_effect_array[6], map_price_array[6],map_sellValue_array[6], 7)},
+        {8, Armor("Ominous Judgement", map_effect_array[7], map_price_array[7],map_sellValue_array[7], 8)}
     };
-    
+	
     //Able to check private data of hero i.e My_class because its a friend
 	//check class
 	if (hero.My_class != "Archer")

@@ -10,7 +10,7 @@
 
 void PotionShop::potionShop(Hero& hero)
 {
-    this->potion_items = {//name, health, price, value
+    /*this->potion_items = {//name, health, price, value
         {1, Potion("Mommy's Tea", 4, 150, 1)},
         {2, Potion("Antidote of Life", 10, 230, 2)},
         {3, Potion("Red Potion'", 16, 300, 3)},
@@ -19,6 +19,19 @@ void PotionShop::potionShop(Hero& hero)
         {6, Potion("Holy Light", 40, 690, 6)},
         {7, Potion("Serum of Rejuvination", 52, 750, 7)},
         {8, Potion("Elixir", 60, 900, 8)}
+    };*/
+	
+	this->init_map_values();//Inherits init_map_values from mainshop
+	
+	this->potion_items = {//name, health, price, value
+        {1, Potion("Mommy's Tea",		    map_effect_array[0], map_price_array[0],map_sellValue_array[0], 1)},
+        {2, Potion("Antidote of Life",      map_effect_array[1], map_price_array[1],map_sellValue_array[1], 2)},
+        {3, Potion("Red Potion'",		    map_effect_array[2], map_price_array[2],map_sellValue_array[2], 3)},
+        {4, Potion("Imperial Regeneration", map_effect_array[3], map_price_array[3],map_sellValue_array[3], 4)},
+        {5, Potion("Oil of Health",			map_effect_array[4], map_price_array[4],map_sellValue_array[4], 5)},
+        {6, Potion("Holy Light",			map_effect_array[5], map_price_array[5],map_sellValue_array[5], 6)},
+        {7, Potion("Serum of Rejuvination", map_effect_array[6], map_price_array[6],map_sellValue_array[6], 7)},
+        {8, Potion("Elixir",				map_effect_array[7], map_price_array[7],map_sellValue_array[7], 8)}
     };
     
 	//Make a random function that gets potions from inventories and puts thhem into treasure chests which are also called randomly

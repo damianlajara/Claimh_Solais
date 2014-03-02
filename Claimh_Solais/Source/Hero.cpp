@@ -222,7 +222,7 @@ void Hero::Dungeon(Hero& hero, Monster& m, Monster& m1,Monster& m2,Monster& m3,M
             cin >> option;
             if ((option == 'r')||(option == 'R')) this->RandDBattle(m, m1, m2, m3, m4, m5, m6, m7, m8, m9,roll);
             else if ((option == 's')||(option == 'S')) shop.mainShop(hero);
-            else if ((option == 'i')||(option == 'I')) inventory.DisplayInventory(hero);
+            else if ((option == 'i')||(option == 'I')) inventory.DisplayInventory(hero);//make inventory a friend of shop not of hero
             else if ((option == 'o')||(option == 'O')) this->option_menu();
             else if ((option == 'q')||(option == 'Q')) exit = false;
             else cout << "You enetered an invalid answer!\n";

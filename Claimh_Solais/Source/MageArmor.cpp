@@ -9,7 +9,7 @@
 #include "MageArmor.h"
 void MageArmor::MageArmor_Shop(Hero& hero)
 {
-     this->mage_armor = {//name, damage, price
+     /*this->mage_armor = {//name, damage, price
         {1, Armor("Colossus", 4, 150, 1)},
         {2, Armor("Eternal Vanguard", 10, 230, 2)},
         {3, Armor("Prism", 16, 300, 3)},
@@ -18,6 +18,19 @@ void MageArmor::MageArmor_Shop(Hero& hero)
         {6, Armor("Eclipse", 40, 690, 6)},
         {7, Armor("Lunar Spirit", 52, 750, 7)},
         {8, Armor("Astral Inducer", 60, 900, 8)}
+    };*/
+	
+	this->init_map_values();//Inherits init_map_values from mainshop
+	
+	this->mage_armor = {//name, damage, price
+        {1, Armor("Colossus",         map_effect_array[0], map_price_array[0],map_sellValue_array[0], 1)},
+        {2, Armor("Eternal Vanguard", map_effect_array[1], map_price_array[1],map_sellValue_array[1], 2)},
+        {3, Armor("Prism",            map_effect_array[2], map_price_array[2],map_sellValue_array[2], 3)},
+        {4, Armor("Valkyrie",		  map_effect_array[3], map_price_array[3],map_sellValue_array[3], 4)},
+        {5, Armor("Trident",		  map_effect_array[4], map_price_array[4],map_sellValue_array[4], 5)},
+        {6, Armor("Eclipse",		  map_effect_array[5], map_price_array[5],map_sellValue_array[5], 6)},
+        {7, Armor("Lunar Spirit",	  map_effect_array[6], map_price_array[6],map_sellValue_array[6], 7)},
+        {8, Armor("Astral Inducer",   map_effect_array[7], map_price_array[7],map_sellValue_array[7], 8)}
     };
     
     //Able to check private data of hero i.e My_class because its a friend

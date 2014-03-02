@@ -36,6 +36,29 @@ Armor equipped_armor;
 vector <Armor> MainShop::armor_inventory;
 vector <Potion> MainShop::potion_inventory;
 vector <Weapon> MainShop::weapon_inventory;
+//int map_effect_array[8];
+//int map_price_array[8];
+//int map_sellValue_array[8];
+void MainShop::init_map_values()
+{
+	int effect = 12;
+	int price = 100;
+	int sell_value = 50;
+	
+	for(int i =0; i<8; i++)
+	{
+		map_effect_array[i] = effect;
+		cout << i << ") Effect: " << map_effect_array[i] << " ";
+		map_price_array[i] = price;
+		cout << i << ") Cost: " <<  map_price_array[i] << " ";
+		map_sellValue_array[i] = sell_value;
+		cout << i << ") Sells for: " <<  map_sellValue_array[i] << endl;
+		effect += 12;
+		price += 110;
+		sell_value += 65;
+	}
+}
+//int MainShop::map_init_array[7];
 
 void MainShop::mainShop(Hero& hero)
 {
@@ -71,11 +94,12 @@ void MainShop::mainShop(Hero& hero)
 	{
         
 		cout << "Welcome to the Claimh Solais Shop!\nThis is where your hard work and dedication pay off!\n";
-        
+		      
 		if (hero.getMoney() > 0)//Check to see if broke
 		{
-            
-			cout << "What are you looking for?\n\n";
+            cout << "At any time, enter 'i' to view your inventory!\n";
+			
+			cout << "What can I get for ya, mate?\n\n";
 			cout << "1) Weapons\n2) Armor\n3) Potions\n" << endl;
 			cin >> choice1;
             

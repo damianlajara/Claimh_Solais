@@ -20,15 +20,16 @@ struct Potion {
     int _health;
     int _price;
     int _value;
+	int _sellValue;
     
     static bool compareByValue(const Potion& lhs, const Potion& rhs)
     { return lhs._value < rhs._value; }
     
     Potion()
-    : _name(""), _health(0), _price(0), _value(0)
+    : _name(""), _health(0), _price(0), _sellValue(0), _value(0)
     {}
-    Potion(const string& name, int health, int price, int value)
-    : _name(name), _health(health), _price(price), _value(value)
+    Potion(const string& name, int health, int price,  int sell, int value)
+    : _name(name), _health(health), _price(price), _sellValue(sell), _value(value)
     {}
 };
  struct Weapon {
@@ -36,15 +37,16 @@ struct Potion {
     int _damage;
     int _price;
     int _value;
+	int _sellValue;
      
      static bool compareByValue(const Weapon& lhs, const Weapon& rhs)
      { return lhs._value < rhs._value; }
      
     Weapon()
-    : _name(""), _damage(0), _price(0), _value(0)
+    : _name(""), _damage(0), _price(0), _sellValue(0), _value(0)
     {}
-    Weapon(const string& name, int damage, int price, int value)
-    : _name(name), _damage(damage), _price(price), _value(value)
+    Weapon(const string& name, int damage, int price, int sell, int value )
+    : _name(name), _damage(damage), _price(price), _sellValue(sell), _value(value)
     {}
 };
 struct Armor {
@@ -52,15 +54,16 @@ struct Armor {
     int _defense;
     int _price;
     int _value;
+	int _sellValue;
     
     static bool compareByValue(const Armor& lhs, const Armor& rhs)
     { return lhs._value < rhs._value; }
     
     Armor()
-    : _name(""), _defense(0), _price(0), _value(0)
+    : _name(""), _defense(0), _price(0), _sellValue(0), _value(0)
     {}
-    Armor(const string& name, int defense, int price, int value)
-    : _name(name), _defense(defense), _price(price), _value(value)
+    Armor(const string& name, int defense, int price, int sell, int value )
+    : _name(name), _defense(defense), _price(price), _sellValue(sell), _value(value)
     {}
 };
 
@@ -74,11 +77,18 @@ class MainShop
         
     protected:
         //declare static so derived classes are all using the same inventory instead of each having their own
-        
+		//int effect = 12;
+		//int price = 100;
+		//int sell_value = 50;
         static vector <Armor> armor_inventory;
         static vector <Potion> potion_inventory;
         static vector <Weapon> weapon_inventory;
-        
+	
+		int map_effect_array[8];
+		int map_price_array[8];
+		int map_sellValue_array[8];
+	
+		void init_map_values();
         void add_weapon(Weapon weapon);
         void add_armor(Armor armor);
         void add_potion(Potion potion);

@@ -39,7 +39,7 @@ void Inventory::DisplayInventory(Hero& hero)
     //if weaponInventory == some name, then set attack to something
     //int equipChoice;
 	cout << "\nWhat do you want to do?\n1) Check Status\n2) Equip Weapons\n3) Equip Armor\n4) Use Potions\n";//Equip what is in your inventory
-	cin >> choice;
+	cin >> choice;//Display the weapon, then ask if they want to equip or sell
 	switch (choice)
 	{
         case 1: this->DisplayStats(hero);
@@ -50,36 +50,17 @@ void Inventory::DisplayInventory(Hero& hero)
                 cout << "Your current Weapons are: \n";
                 sort(weapon_inventory.begin(), weapon_inventory.end(),Weapon::compareByValue);//Sorts vector depending on the _value
                 display_weapons();
-                cout << "What item weapon would you like to equip?";
-                cin >> equipChoiceW;
-                
-                /*****CREATE AN UNEQUIP FUNCTION****/
-                
-                for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)
-                { //loop through vector
-                    if(equipChoiceW == iter->_value)//if user choice matches the weapon in vector
-                    {
-                        if(equip_weapon(iter->_name))//if equip was succesfull
-                        {
-                            cout << "\nYou have Successfully equipped " << iter->_name;//equip weapon
-                            hero.setAttack(hero.getAttack() + iter->_damage);
-                            //after i equip, dont let me requip the same weapon
-                            cout << "\nYour equipped weapon is " << Equipped_weapon()._name;//debug code
-                            weapon_flag = true;
-                            break;//break for loop
-                        }
-                        
-                        else
-                        {
-                            cout << "You cannot equip this weapon\nPlease try again" << endl;
-                        }
-                    }
-                    else if ((equipChoiceW != iter->_value) && (iter == weapon_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
-                    {
-                        cout << "\nYou have entered an invalid answer!\n";
-                        break;
-                    }
-                }
+				cout << "Please select what you would like to do\n1)Equip weapons\n2) Sell weapons\n";
+				cin >> equip_or_sell;
+				switch (equip_or_sell)
+				{
+					case 1:this->weapon_equip(hero);
+						break;
+					case 2: this->weapon_sell(hero);
+					default: cout << "Error, that is an invalid choice!\n";
+						break;
+				}
+				
             }
             else cout << "Error! You currently do not own any items\n";
             break;
@@ -231,4 +212,76 @@ void Inventory::DisplayStats(Hero& hero)
 	}
     //Learn how to throw exceptions so in case someone types a non-integer value, it wont go in an endless loop
     //exp till next level:...
+}
+
+void Inventory::weapon_equip(Hero &hero)
+{
+	cout << "What item weapon would you like to equip?";
+	cin >> equipChoiceW;
+	
+	/*****CREATE AN UNEQUIP FUNCTION****/
+	
+	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)
+	{ //loop through vector
+		if(equipChoiceW == iter->_value)//if user choice matches the weapon in vector
+		{
+			if(equip_weapon(iter->_name))//if equip was succesfull
+			{
+				cout << "\nYou have Successfully equipped " << iter->_name;//equip weapon
+				hero.setAttack(hero.getAttack() + iter->_damage);
+				//after i equip, dont let me requip the same weapon
+				cout << "\nYour equipped weapon is " << Equipped_weapon()._name;//debug code
+				weapon_flag = true;
+				break;//break for loop
+			}
+			
+			else
+			{
+				cout << "You cannot equip this weapon\nPlease try again" << endl;
+			}
+		}
+		else if ((equipChoiceW != iter->_value) && (iter == weapon_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
+		{
+			cout << "\nYou have entered an invalid answer!\n";
+			break;
+		}
+	}
+}
+
+void Inventory::weapon_sell(Hero &hero)
+{
+	cout << "What item weapon would you like to sell?";
+	cin >> sellChoiceW;
+	
+	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)
+	{ //loop through vector
+		if(sellChoiceW == iter->_value)//if user choice matches the weapon in vector
+		{
+			/**change***/if(equip_weapon(iter->_name))//if equip was succesfull
+			{
+				cout << "\nYou have Successfully equipped " << iter->_name;//equip weapon
+				hero.setAttack(hero.getAttack() + iter->_damage);
+				//after i equip, dont let me requip the same weapon
+				cout << "\nYour equipped weapon is " << Equipped_weapon()._name;//debug code
+				weapon_flag = true;
+				break;//break for loop
+			}
+			
+			else
+			{
+				cout << "You cannot equip this weapon\nPlease try again" << endl;
+			}
+		}
+		else if ((sellChoiceW != iter->_value) && (iter == weapon_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
+		{
+			cout << "\nYou have entered an invalid answer!\n";
+			break;
+		}
+		//Delete weapon from inventory after weapon has been sold!
+		if (weapon_inventory.size() == 1) potion_inventory.clear();//if theres only one potion, then clear the whole vector
+		else if (weapon_inventory.size() > 1) weapon_inventory.erase(weapon_inventory.begin() + (iter->_value-1));
+		//ex: vector.erase(vector.begin() + 4)if value is 4, deletes the fifth element
+		else cout << "Error in deleting the weapon from inventory!\n";//dont need to add if vector<1 because if the vector is empty, you cant enter this code
+		break;//break for loop
+	}
 }

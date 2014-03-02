@@ -10,7 +10,7 @@
 
 void MageWeapons::MageShop(Hero& hero)
 {
-     this->mage_weapons = {//name, damage, price
+     /*this->mage_weapons = {//name, damage, price
         {1, Weapon("Neil Vajra", 4, 150, 1)},
         {2, Weapon("Brionac", 10, 230, 2)},
         {3, Weapon("Claimh Solais", 16, 300, 3)},
@@ -19,8 +19,21 @@ void MageWeapons::MageShop(Hero& hero)
         {6, Weapon("Tizona", 40, 690, 6)},
         {7, Weapon("Zulfiqar", 52, 750, 7)},
         {8, Weapon("Orcrist", 60, 900, 8)}
-    };
+    };*/
     
+	this->init_map_values();//Inherits init_map_values from mainshop
+	
+	this->mage_weapons = {//name, damage, price
+        {1, Weapon("Neil Vajra",	map_effect_array[0], map_price_array[0],map_sellValue_array[0], 1)},
+        {2, Weapon("Brionac",		map_effect_array[1], map_price_array[1],map_sellValue_array[1], 2)},
+        {3, Weapon("Claimh Solais", map_effect_array[2], map_price_array[2],map_sellValue_array[2], 3)},
+        {4, Weapon("Durandal",		map_effect_array[3], map_price_array[3],map_sellValue_array[3], 4)},
+        {5, Weapon("Kusanagi",		map_effect_array[4], map_price_array[4],map_sellValue_array[4], 5)},
+        {6, Weapon("Tizona",		map_effect_array[5], map_price_array[5],map_sellValue_array[5], 6)},
+        {7, Weapon("Zulfiqar",		map_effect_array[6], map_price_array[6],map_sellValue_array[6], 7)},
+        {8, Weapon("Orcrist",		map_effect_array[7], map_price_array[7],map_sellValue_array[7], 8)}
+    };
+	
 	//check class
 	if (hero.My_class != "Mage")
 	{

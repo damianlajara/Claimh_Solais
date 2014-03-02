@@ -11,7 +11,7 @@
 //MainShop shop;
 void SoldierWeapons::soldierShop(Hero& hero)
 {
-	this->soldier_weapons = {//name, damage, price
+	/*this->soldier_weapons = {//name, damage, price
         {1, Weapon("Meito Ichimonji", 4, 150, 1)},
         {2, Weapon("Shusui", 10, 230, 2)},
         {3, Weapon("Apocalypse", 16, 300, 3)},
@@ -20,8 +20,20 @@ void SoldierWeapons::soldierShop(Hero& hero)
         {6, Weapon("Eternal Darkness", 40, 690, 6)},
         {7, Weapon("Masamune", 52, 750, 7)},
         {8, Weapon("Soul Calibur", 60, 900, 8)}
+    };*/
+	
+	this->init_map_values();//Inherits init_map_values from mainshop
+	
+	this->soldier_weapons = {//name, damage, price
+        {1, Weapon("Meito Ichimonji",  map_effect_array[0], map_price_array[0],map_sellValue_array[0], 1)},
+        {2, Weapon("Shusui",		   map_effect_array[1], map_price_array[1],map_sellValue_array[1], 2)},
+        {3, Weapon("Apocalypse",	   map_effect_array[2], map_price_array[2],map_sellValue_array[2], 3)},
+        {4, Weapon("Blade of Scars",   map_effect_array[3], map_price_array[3],map_sellValue_array[3], 4)},
+        {5, Weapon("Ragnarok",		   map_effect_array[4], map_price_array[4],map_sellValue_array[4], 5)},
+        {6, Weapon("Eternal Darkness", map_effect_array[5], map_price_array[5],map_sellValue_array[5], 6)},
+        {7, Weapon("Masamune",		   map_effect_array[6], map_price_array[6],map_sellValue_array[6], 7)},
+        {8, Weapon("Soul Calibur",     map_effect_array[7], map_price_array[7],map_sellValue_array[7], 8)}
     };
-    
 	/*
 	//Use this version to work on windows!
 	soldier_weapons[1] = Weapon("Meito Ichimonji", 4, 150, 1);

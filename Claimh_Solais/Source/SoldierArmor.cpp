@@ -2,7 +2,7 @@
 //MainShop shop;
 void SoldierArmor::soldierArmor_Shop(Hero& hero)
 {
-    this->soldier_armor = {//name, damage, price
+    /*this->soldier_armor = {//name, damage, price
         {1, Armor("Calcite", 4, 150, 1)},
         {2, Armor("Mirage", 10, 230, 2)},
         {3, Armor("Djinn", 16, 300, 3)},
@@ -11,8 +11,21 @@ void SoldierArmor::soldierArmor_Shop(Hero& hero)
         {6, Armor("Fatal Sith", 40, 690, 6)},
         {7, Armor("Devastator", 52, 750, 7)},
         {8, Armor("Override", 60, 900, 8)}
+    };*/
+	
+	this->init_map_values();//Inherits init_map_values from mainshop
+	
+	this->soldier_armor = {//name, damage, price
+        {1, Armor("Calcite",       map_effect_array[0], map_price_array[0],map_sellValue_array[0], 1)},
+        {2, Armor("Mirage",		   map_effect_array[1], map_price_array[1],map_sellValue_array[1], 2)},
+        {3, Armor("Djinn",         map_effect_array[2], map_price_array[2],map_sellValue_array[2], 3)},
+        {4, Armor("Shape Shifter", map_effect_array[3], map_price_array[3],map_sellValue_array[3], 4)},
+        {5, Armor("Dark Prism",	   map_effect_array[4], map_price_array[4],map_sellValue_array[4], 5)},
+        {6, Armor("Fatal Sith",	   map_effect_array[5], map_price_array[5],map_sellValue_array[5], 6)},
+        {7, Armor("Devastator",	   map_effect_array[6], map_price_array[6],map_sellValue_array[6], 7)},
+        {8, Armor("Override",	   map_effect_array[7], map_price_array[7],map_sellValue_array[7], 8)}
     };
-    
+	
     //Able to check private data of hero i.e My_class because its a friend
 	//check class
 	if (hero.My_class != "Soldier")
