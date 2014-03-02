@@ -11,6 +11,7 @@
 #include "Inventory.h"//Need in order to make inventory object
 #include <iostream>
 #include <String>
+#include <iomanip>
 MainShop shop;
 Inventory inventory;
 #include <ctime>
@@ -77,7 +78,7 @@ void Hero::option_menu()
     cout << "2) Change Class\n";
     cout << "3) Change Gender\n";
     cout << "4) Change Name\n";
-    cout << "5) Quit\n";
+    cout << "5) Exit\n";
     cin >> option_choice;
     switch (option_choice)
     {
@@ -211,14 +212,12 @@ void Hero::option_menu()
 void Hero::Dungeon(Hero& hero, Monster& m, Monster& m1,Monster& m2,Monster& m3,Monster& m4,Monster& m5,Monster& m6,Monster& m7,Monster& m8,Monster& m9)
 {
     srand((unsigned int)time(NULL));
-    //MainShop shop;
-    //Inventory inventory;
     do
     {
         if (this->getHp() > 0)//Can only roll if player is still alive
         {
         
-            int roll = ((rand() % 6) +1);
+            roll = ((rand() % 6) +1);
             cout << "\nEnter 'r' for roll, 's' for shop, 'i' for inventory, 'o' for options menu, or 'q' to quit ";
             cin >> option;
             if ((option == 'r')||(option == 'R')) this->RandDBattle(m, m1, m2, m3, m4, m5, m6, m7, m8, m9,roll);
@@ -239,9 +238,51 @@ void Hero::Dungeon(Hero& hero, Monster& m, Monster& m1,Monster& m2,Monster& m3,M
     
 }
 
+void Hero::diceNumber(int roll)
+{
+	
+    if(roll == 1)
+    {
+        cout << "\nYou have rolled: \n"<< endl;// << Dice1;
+		cout << " -----------\n|" <<setw(14) << "|\n|" << setw(14) << "|\n|" << setw(6) << "*" << setw(8) << "|\n|" << setw(14) << "|\n|" << setw(26) << "|\n -----------\n";//1
+    }
+    else if (roll == 2)
+    {
+        cout << "\nYou have rolled: \n"<< endl;// << Dice2;
+		cout << " -----------\n|" <<setw(14) << "|\n|" << setw(4) << "*" << setw(10) << "|\n|" << setw(14) << "|\n|" << setw(8) << "*" << setw(6) << "|\n|" << setw(26) << "|\n -----------\n";//2
+    }
+    else if (roll == 3)
+    {
+        cout << "\nYou have rolled: \n" << endl;// << Dice3;
+		cout << " -----------\n|" <<setw(14) << "|\n|" << setw(3) << "*" << setw(11) << "|\n|" << setw(6) << "*" << setw(8) << "|\n|" << setw(9) << "*" << setw(5) << "|\n|" << setw(26) << "|\n -----------\n";//3
+    }
+    else if (roll == 4)
+    {
+        cout << "\nYou have rolled: \n" << endl;// << Dice4;
+		cout << " -----------\n|" <<setw(14) << "|\n|" << setw(4) << "*" << setw(4) << "*" << setw(6) << "|\n|" << setw(14) << "|\n|" << setw(4) << "*" << setw(4) << "*" << setw(6) << "|\n|" << setw(26) << "|\n -----------\n";//4
+    }
+    else if (roll == 5)
+    {
+        cout << "\nYou have rolled: \n" << endl;// << Dice5;
+		cout << " -----------\n|" <<setw(14) << "|\n|" << setw(3) << "*" << setw(6) << "*" << setw(5) << "|\n|" << setw(6) << "*" << setw(8) << "|\n|" << setw(3) << "*" << setw(6) << "*" << setw(5) << "|\n|" << setw(26) << "|\n -----------\n";//5
+    }
+    else if (roll == 6)
+    {
+        cout << "\nYou have rolled: \n" << endl;// << Dice6;
+		cout << " -----------\n|" <<setw(14) << "|\n|" << setw(3) << "*" << setw(6) << "*" << setw(5) << "|\n|" << setw(3) << "*" << setw(6) << "*" << setw(5) << "|\n|" << setw(3) << "*" << setw(6) << "*" << setw(5) << "|\n|" << setw(26) << "|\n -----------\n";//6
+    }
+    else
+    {
+		cout << " -----------\n|" << setw(14) << "|\n|" << setw(14) << "|\n|" << setw(9) << "Error!" << setw(5) << "|\n|" << setw(14) << "|\n|" << setw(26) << "|\n -----------\n";//error
+        cout << "\nError in diceNumber function!\n";
+        return;
+    }
+}
+
 void Hero::RandDBattle(Monster& m, Monster& m1,Monster& m2,Monster& m3,Monster& m4,Monster& m5,Monster& m6,Monster& m7,Monster& m8,Monster& m9, int roll)
 {
-   cout << "You rolled a " << roll << "\n";
+    //cout << "You rolled a " << roll << "\n";
+	diceNumber(roll);
     if (roll % 2 == 0)//if even
     {
         CheckBattle(m, m1, m2, m3, m4, m5, m6, m7, m8, m9);

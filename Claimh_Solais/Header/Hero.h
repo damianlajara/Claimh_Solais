@@ -27,6 +27,7 @@ private:
     int gender_choice;
     string gender;
     string My_class;
+	int roll;
     //string previous_class;/*keep record of class before user changes in options menu*/
     int DungeonFloor;
     int RandMonsters;
@@ -41,6 +42,7 @@ private:
     int class_choice;
     int choice;
     int name_choice;
+	void diceNumber(int roll);
     void initialize_hero();
     
 public:
