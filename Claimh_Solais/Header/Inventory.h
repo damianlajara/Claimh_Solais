@@ -15,10 +15,12 @@ class Inventory: public MainShop//access base class data like protected members
 {
     private:
         int choice;
-        int equipChoiceW;//weapons
-        int equipChoiceA;//armor
-        int equipChoiceP;//potions
-		int sellChoiceW;
+        int equipChoiceW;// buy weapon choice
+        int equipChoiceA;//buy armor choice
+        int equipChoiceP;//buy potions choice
+		int sellChoiceW; //sell weapon choice
+		int sellChoiceA; //sell armor choice
+		int sellChoiceP; //sell potion choice
         int i = 1;
         bool weapon_flag = false;
         bool armor_flag = false;
@@ -30,6 +32,7 @@ class Inventory: public MainShop//access base class data like protected members
         void DisplayStats(Hero& hero);
 		void weapon_equip(Hero& hero);
 		void weapon_sell(Hero &hero);
-    
+		void armor_equip(Hero& hero);
+		void armor_sell(Hero &hero);
 };
 #endif /* defined(__SampleClass1__Inventory__) */
