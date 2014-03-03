@@ -16,6 +16,7 @@ int main()
     //PolyMorphism
     //Since MainShop is an abstract class you cant make objects from it
     //Have to create pointers of derived classes to access mainshop virtual function
+	
     Hero hero(100,1,40,40);//hp,level,attack,defense
     Monster m(100,1,10,20,150,100 /*hp,lvl,att,def,mon,exp*/ ); //Dungeon level 1 monster
 	Monster m1(150,2,50,30,230,300);//Dungeon level 2 monster
@@ -28,7 +29,6 @@ int main()
 	Monster m8(1200,9,750,450,960,8000);//Dungeon level 9 monster
 	Monster m9(2000,10,1000,600,1090,10000);//Dungeon level 10 monster
     
-	MainShop shop;
     hero.Customize();
     hero.GamePlay(hero, m, m1, m2, m3, m4, m5, m6, m7, m8, m9);
     

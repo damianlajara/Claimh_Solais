@@ -30,7 +30,6 @@
  */
 
 //TODO:
-/*ADD a way to quit from everey function here*/
 /*After you equip a weapon/armor, remove it from the inventory*/
 
 #include "Inventory.h"
@@ -50,13 +49,15 @@ void Inventory::DisplayInventory(Hero& hero)
         case 2:
             if (!weapon_inventory.empty())//Make sure inventory is not empty
             {
-				cout << "\nPlease select what you would like to do\n1) Equip weapons\n2) Sell weapons\n";
+				cout << "\nPlease select what you would like to do\n1) Equip weapons\n2) Sell weapons\n3) Quit\n";
 				cin >> equip_or_sell;
 				switch (equip_or_sell)
 				{
 					case 1:this->weapon_equip(hero);
 						break;
 					case 2: this->weapon_sell(hero);
+						break;
+					case 3: cout << "Why you leaving so soon? :(\n";
 						break;
 					default: cout << "Error, that is an invalid choice!\n";
 						break;
@@ -68,13 +69,15 @@ void Inventory::DisplayInventory(Hero& hero)
         case 3:
             if (!armor_inventory.empty())//Make sure inventory is not empty
             {
-				cout << "\nPlease select what you would like to do\n1) Equip armor\n2) Sell armor\n";
+				cout << "\nPlease select what you would like to do\n1) Equip armor\n2) Sell armor\n3) Quit\n";
 				cin >> equip_or_sell;
 				switch (equip_or_sell)
 				{
 					case 1:this->armor_equip(hero);
 						break;
 					case 2: this->armor_sell(hero);
+						break;
+					case 3: cout << "Why you leaving so soon? :(\n";
 						break;
 					default: cout << "Error, that is an invalid choice!\n";
 						break;
@@ -86,13 +89,15 @@ void Inventory::DisplayInventory(Hero& hero)
         case 4:
             if (!potion_inventory.empty())//Make sure inventory is not empty
             {
-				cout << "\nPlease select what you would like to do\n1) Use potions\n2) Sell potions\n";
+				cout << "\nPlease select what you would like to do\n1) Use potions\n2) Sell potions\n3) Quit\n";
 				cin >> equip_or_sell;
 				switch (equip_or_sell)
 				{
 					case 1:this->potion_use(hero);
 						break;
 					case 2: this->potion_sell(hero);
+						break;
+					case 3: cout << "Why you leaving so soon? :(\n";
 						break;
 					default: cout << "Error, that is an invalid choice!\n";
 						break;
@@ -166,9 +171,9 @@ void Inventory::potion_use(Hero &hero)
 	sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);//Sorts vector depending on the _value
 	display_potions();
 	
-	cout << "Which potion would you like to use?";
+	cout << "Which potion would you like to use? (enter 0 to quit)";
 	cin >> equipChoiceP;
-	
+	if (equipChoiceP == 0) return;
 	for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++)//loop through vector
 	{ 
 		if(equipChoiceP == iter->_value)//if user choice matches the potion in vector
@@ -215,8 +220,9 @@ void Inventory::weapon_equip(Hero &hero)
 	sort(weapon_inventory.begin(), weapon_inventory.end(),Weapon::compareByValue);//Sorts vector depending on the _value
 	display_weapons();
 	
-	cout << "\nWhat item weapon would you like to equip?";
+	cout << "\nWhat item weapon would you like to equip? (enter 0 to quit)";
 	cin >> equipChoiceW;
+	if (equipChoiceW == 0) return;
 	
 	/*****CREATE AN UNEQUIP FUNCTION****/
 	
@@ -253,14 +259,15 @@ void Inventory::armor_equip(Hero &hero)
 	sort(armor_inventory.begin(), armor_inventory.end(),Armor::compareByValue);//Sorts vector depending on the _value
 	display_armor();
 	
-	cout << "What item weapon would you like to equip?";
+	cout << "What item weapon would you like to equip? (enter 0 to quit)";
 	cin >> equipChoiceA;
+	if (equipChoiceA == 0) return;
 	
 	/*****CREATE AN UNEQUIP FUNCTION****/
 	
 	for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++)//loop through vector
 	{ 
-		if(equipChoiceA == iter->_value)//if user choice matches the weapon in vector
+		if(equipChoiceA == iter->_value)//if user choice matches the armor in vector
 		{
 			if(equip_armor(iter->_name))//if equip was succesfull
 			{
@@ -291,8 +298,9 @@ void Inventory::potion_sell(Hero &hero)
 	sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);//Sorts vector depending on the _value
 	display_potions();
 	
-	cout << "Which potion would you like to sell?";
+	cout << "Which potion would you like to sell? (enter 0 to quit)";
 	cin >> sellChoiceP;
+	if (sellChoiceP == 0) return;
 	
 	for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++)//loop through vector
 	{ 
@@ -322,8 +330,9 @@ void Inventory::weapon_sell(Hero &hero)
 	sort(weapon_inventory.begin(), weapon_inventory.end(),Weapon::compareByValue);//Sorts vector depending on the _value
 	display_weapons();
 	
-	cout << "\nWhat item weapon would you like to sell?";
+	cout << "\nWhat item weapon would you like to sell? (enter 0 to quit)";
 	cin >> sellChoiceW;
+	if (sellChoiceW == 0) return;
 	
 	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)//loop through vector
 	{ 
@@ -353,12 +362,13 @@ void Inventory::armor_sell(Hero &hero)
 	sort(armor_inventory.begin(), armor_inventory.end(),Armor::compareByValue);//Sorts vector depending on the _value
 	display_armor();
 	
-	cout << "\nWhat item weapon would you like to sell?";
+	cout << "\nWhat item weapon would you like to sell? (enter 0 to quit)";
 	cin >> sellChoiceA;
+	if (sellChoiceA == 0) return;
 	
 	for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++) //loop through vector
 	{
-		if(sellChoiceA == iter->_value)//if user choice matches the weapon in vector
+		if(sellChoiceA == iter->_value)//if user choice matches the armor in vector
 		{
 			hero.setMoney(hero.getMoney() + iter->_sellValue);
 			cout << "\nYou have Successfully sold " << iter->_name << " for " << iter->_sellValue << " gold!\n";//sell armor

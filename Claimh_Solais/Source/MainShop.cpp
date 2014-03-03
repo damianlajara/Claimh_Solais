@@ -48,11 +48,11 @@ void MainShop::init_map_values()
 	for(int i =0; i<8; i++)
 	{
 		map_effect_array[i] = effect;
-		cout << i << ") Effect: " << map_effect_array[i] << " ";
+		//cout << i << ") Effect: " << map_effect_array[i] << " ";//debug code
 		map_price_array[i] = price;
-		cout << i << ") Cost: " <<  map_price_array[i] << " ";
+		//cout << i << ") Cost: " <<  map_price_array[i] << " ";//debug code
 		map_sellValue_array[i] = sell_value;
-		cout << i << ") Sells for: " <<  map_sellValue_array[i] << endl;
+		//cout << i << ") Sells for: " <<  map_sellValue_array[i] << endl;//debug code
 		effect += 12;
 		price += 110;
 		sell_value += 65;
@@ -97,19 +97,18 @@ void MainShop::mainShop(Hero& hero)
 		      
 		if (hero.getMoney() > 0)//Check to see if broke
 		{
-            cout << "At any time, enter 'i' to view your inventory!\n";
-			
-			cout << "What can I get for ya, mate?\n\n";
+			cout << "\nWhat can I get for ya, mate?\n";
 			cout << "1) Weapons\n2) Armor\n3) Potions\n" << endl;
 			cin >> choice1;
             
-            cout << "Your current gold is: " << hero.getMoney() << endl;
+            cout << "Your current gold is: " << hero.getMoney() << "\n\n";
+			
 			if (choice1 == 1)//Weapons
 			{
 				cout << "What type of weapon are you looking for??\n\n";
 				cout << "1) Swords\n2) SpellBooks\n3) Bows\n";
 				cin >> choice;
-                
+				
 				//Display Choices
 				switch (choice)
 				{
