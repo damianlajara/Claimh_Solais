@@ -30,8 +30,13 @@ class Inventory: public MainShop//access base class data like protected members
     public:
         void DisplayInventory(Hero& hero);
         void DisplayStats(Hero& hero);
+	
+		void potion_use(Hero &hero);
+		void potion_sell(Hero &hero);
+	
 		void weapon_equip(Hero& hero);
 		void weapon_sell(Hero &hero);
+	
 		void armor_equip(Hero& hero);
 		void armor_sell(Hero &hero);
 };

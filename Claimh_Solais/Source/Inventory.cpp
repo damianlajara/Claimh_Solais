@@ -29,6 +29,9 @@
  Which potion would you like to use?2
  */
 
+//TODO:
+/*ADD a way to quit from everey function here*/
+/*After you equip a weapon/armor, remove it from the inventory*/
 
 #include "Inventory.h"
 
@@ -83,51 +86,16 @@ void Inventory::DisplayInventory(Hero& hero)
         case 4:
             if (!potion_inventory.empty())//Make sure inventory is not empty
             {
-                cout << "Your current Potions are: \n";
-                sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);//Sorts vector depending on the _value
-                display_potions();
-                 
-                cout << "Which potion would you like to use?";
-                cin >> equipChoiceP;
-				
-				for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++)
-				{ //loop through vector
-					if(equipChoiceP == iter->_value)//if user choice matches the potion in vector
-					{
-						if (hero.getHp() < hero.get_maxHp())//if hp hasnt reached max_hp yet
-						{
-							hero.setHp(hero.getHp() + iter->_health);//use potion
-							cout << "\nYou have Successfully used " << iter->_name << " +"<<iter->_health<< "\n";
-
-							if(hero.getHp() > hero.get_maxHp())//check if hp went over max value, so you can reset it
-							{
-								hero.setHp(hero.reset_max_hp());
-								cout << "Hp has gone over max value! Resetting back to max\n";
-							}
-						}
-						else if(hero.getHp() == hero.get_maxHp())//if hp is already at max
-						{
-							cout << "You cannot use " << iter->_name << ", since your hp is full\n";
-						}
-						else//if hp is over max or any other kind of irregular error
-						{
-							cout << "Error in checking max_hp!\n";
-				            //return;
-						}
-						
-						//Delete potion from inventory after potion has been used!
-						if (potion_inventory.size() == 1) potion_inventory.clear();//if theres only one potion, then clear the whole vector
-						else if (potion_inventory.size() > 1) potion_inventory.erase(potion_inventory.begin() + (iter->_value-1));
-						//ex: vector.erase(vector.begin() + 4)if value is 4, deletes the fifth element
-						else cout << "Error in deleting the potion from inventory!\n";//dont need to add if vector<1 because if the vector is empty, you cant enter this code
-						break;//break for loop
-						
-					}
-					else if ((equipChoiceP != iter->_value) && (iter == potion_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
-					{
-						cout << "\nYou have entered an invalid answer!\n";
+				cout << "\nPlease select what you would like to do\n1) Use potions\n2) Sell potions\n";
+				cin >> equip_or_sell;
+				switch (equip_or_sell)
+				{
+					case 1:this->potion_use(hero);
 						break;
-					}
+					case 2: this->potion_sell(hero);
+						break;
+					default: cout << "Error, that is an invalid choice!\n";
+						break;
 				}
                 
             }
@@ -183,7 +151,8 @@ void Inventory::DisplayStats(Hero& hero)
 		
         cout << "**********************\n";
     }
-    else {
+    else
+	{
 		cout << "Exiting Status Menu . . .\n";
 		return;
 	}
@@ -191,18 +160,68 @@ void Inventory::DisplayStats(Hero& hero)
     //exp till next level:...
 }
 
+void Inventory::potion_use(Hero &hero)
+{
+	cout << "Your current Potions are: \n";
+	sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);//Sorts vector depending on the _value
+	display_potions();
+	
+	cout << "Which potion would you like to use?";
+	cin >> equipChoiceP;
+	
+	for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++)//loop through vector
+	{ 
+		if(equipChoiceP == iter->_value)//if user choice matches the potion in vector
+		{
+			if (hero.getHp() < hero.get_maxHp())//if hp hasnt reached max_hp yet
+			{
+				hero.setHp(hero.getHp() + iter->_health);//use potion
+				cout << "\nYou have Successfully used " << iter->_name << " +"<<iter->_health<< "\n";
+				
+				if(hero.getHp() > hero.get_maxHp())//check if hp went over max value, so you can reset it
+				{
+					hero.setHp(hero.reset_max_hp());
+					cout << "Hp has gone over max value! Resetting back to max\n";
+				}
+			}
+			else if(hero.getHp() == hero.get_maxHp())//if hp is already at max
+			{
+				cout << "You cannot use " << iter->_name << ", since your hp is full\n";
+			}
+			else//if hp is over max or any other kind of irregular error
+			{
+				cout << "Error in checking max_hp!\n";
+				//return;
+			}
+			
+			//Delete potion from inventory after potion has been used!
+			if (potion_inventory.size() == 1) potion_inventory.clear();//if theres only one potion, then clear the whole vector
+			else if (potion_inventory.size() > 1) potion_inventory.erase(potion_inventory.begin() + (iter->_value-1));
+			//ex: vector.erase(vector.begin() + 4)if value is 4, deletes the fifth element
+			else cout << "Error in deleting the potion from inventory!\n";//dont need to add if vector<1 because if the vector is empty, you cant enter this code
+			break;//break for loop
+			
+		}
+		else if ((equipChoiceP != iter->_value) && (iter == potion_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
+		{
+			cout << "\nYou have entered an invalid answer!\n";
+			break;
+		}
+	}
+}
 void Inventory::weapon_equip(Hero &hero)
 {
 	cout << "Your current Weapons are: \n";
 	sort(weapon_inventory.begin(), weapon_inventory.end(),Weapon::compareByValue);//Sorts vector depending on the _value
 	display_weapons();
+	
 	cout << "\nWhat item weapon would you like to equip?";
 	cin >> equipChoiceW;
 	
 	/*****CREATE AN UNEQUIP FUNCTION****/
 	
-	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)
-	{ //loop through vector
+	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)//loop through vector
+	{ 
 		if(equipChoiceW == iter->_value)//if user choice matches the weapon in vector
 		{
 			if(equip_weapon(iter->_name))//if equip was succesfull
@@ -233,13 +252,14 @@ void Inventory::armor_equip(Hero &hero)
 	cout << "Your current Armors are: \n";
 	sort(armor_inventory.begin(), armor_inventory.end(),Armor::compareByValue);//Sorts vector depending on the _value
 	display_armor();
+	
 	cout << "What item weapon would you like to equip?";
 	cin >> equipChoiceA;
 	
 	/*****CREATE AN UNEQUIP FUNCTION****/
 	
-	for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++)
-	{ //loop through vector
+	for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++)//loop through vector
+	{ 
 		if(equipChoiceA == iter->_value)//if user choice matches the weapon in vector
 		{
 			if(equip_armor(iter->_name))//if equip was succesfull
@@ -265,16 +285,48 @@ void Inventory::armor_equip(Hero &hero)
 	}
 }
 
+void Inventory::potion_sell(Hero &hero)
+{
+	cout << "Your current Potions are: \n";
+	sort(potion_inventory.begin(), potion_inventory.end(),Potion::compareByValue);//Sorts vector depending on the _value
+	display_potions();
+	
+	cout << "Which potion would you like to sell?";
+	cin >> sellChoiceP;
+	
+	for (vector <Potion>::iterator iter = potion_inventory.begin(); iter != potion_inventory.end(); iter++)//loop through vector
+	{ 
+		if(sellChoiceP == iter->_value)//if user choice matches the potion in vector
+		{
+			hero.setMoney(hero.getMoney() + iter->_sellValue);
+			cout << "\nYou have Successfully sold " << iter->_name << " for " << iter->_sellValue << " gold!\n";//sell weapon
+			
+			//Delete potion from inventory after potion has been sold!
+			if (potion_inventory.size() == 1) potion_inventory.clear();//if theres only one potion, then clear the whole vector
+			else if (potion_inventory.size() > 1) potion_inventory.erase(potion_inventory.begin() + (iter->_value-1));
+			//ex: vector.erase(vector.begin() + 4)if value is 4, deletes the fifth element
+			else cout << "Error in deleting the weapon from inventory!\n";//dont need to add if vector<1 because if the vector is empty, you cant enter this code
+			break;//break for loop
+		}
+		else if ((sellChoiceP != iter->_value) && (iter == potion_inventory.end()-1))//if user choice doesn't match with something in the vector means it was an invalid answer, since the user can pick only what the vector displays
+		{
+			cout << "\nYou have entered an invalid answer!\n";
+			break;
+		}
+	}
+}
+
 void Inventory::weapon_sell(Hero &hero)
 {
 	cout << "Your current Weapons are: \n";
 	sort(weapon_inventory.begin(), weapon_inventory.end(),Weapon::compareByValue);//Sorts vector depending on the _value
 	display_weapons();
+	
 	cout << "\nWhat item weapon would you like to sell?";
 	cin >> sellChoiceW;
 	
-	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)
-	{ //loop through vector
+	for (vector <Weapon>::iterator iter = weapon_inventory.begin(); iter != weapon_inventory.end(); iter++)//loop through vector
+	{ 
 		if(sellChoiceW == iter->_value)//if user choice matches the weapon in vector
 		{
 			hero.setMoney(hero.getMoney() + iter->_sellValue);
@@ -300,11 +352,12 @@ void Inventory::armor_sell(Hero &hero)
 	cout << "Your current Armors are: \n";
 	sort(armor_inventory.begin(), armor_inventory.end(),Armor::compareByValue);//Sorts vector depending on the _value
 	display_armor();
+	
 	cout << "\nWhat item weapon would you like to sell?";
 	cin >> sellChoiceA;
 	
-	for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++)
-	{ //loop through vector
+	for (vector <Armor>::iterator iter = armor_inventory.begin(); iter != armor_inventory.end(); iter++) //loop through vector
+	{
 		if(sellChoiceA == iter->_value)//if user choice matches the weapon in vector
 		{
 			hero.setMoney(hero.getMoney() + iter->_sellValue);
